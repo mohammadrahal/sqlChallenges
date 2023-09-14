@@ -1,0 +1,94 @@
+//CREATING DATABASE 
+
+CREATE DATABASE schooLDB;
+use schooLDB;
+show databases;
+// cretaing tables teachers students...
+CREATE TABLE teachers (
+     id INT,
+     first_name VARCHAR(255),
+     last_name VARCHAR(255), 
+     subject VARCHAR(255),  
+      PRIMARY KEY(id)
+);
+//Inserting into database 
+INSERT INTO teachers(id, first_name, last_name, subject)
+VALUES (1, 'John', 'Doe', 'Math'),
+       (2, 'Jane', 'Smith', 'Science');
+SHOW TABLES;
+
+//select all data from table teacher
+SELECT *  FROM teachers;
+//select first name and subject from table teachers 
+SELECT first_name, subject  FROM teachers where id= 1;
+
+//cretaing students table
+CREATE TABLE students(
+    id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    teacher_id INT
+);
+
+//Inserting date in to it
+INSERT INTO students(id, first_name, last_name, teacher_id)
+VALUES (1, 'Alice', 'Brown', 1),
+       (2, 'Bob', 'Johnson', 2);
+
+//showing data
+SELECT * FROM students
+
+//inner join
+SELECT students.first_name, teachers.first_name
+FROM students
+INNER JOIN teachers ON students.teacher_id = teachers.id;
+
+//left JOIN
+SELECT students.first_name, teachers.first_name
+FROM students
+LEFT JOIN teachers ON students.teacher_id = teachers.id;
+//RIGHT join
+SELECT students.first_name, teachers.first_name
+FROM students
+RIGHT JOIN teachers ON students.teacher_id = teachers.id;
+
+//all
+SELECT students.first_name, teachers.first_name
+FROM students
+LEFT JOIN teachers ON students.teacher_id = teachers.id
+UNION ALL
+
+//full
+SELECT students.first_name, teachers.first_name
+FROM teachers
+FULL JOIN students ON teachers.id = students.teacher_id
+WHERE students.first_name IS NULL;
+
+// adding tables auther, books, publisher to the database
+
+CREATE TABLE books(
+    id INT PRIMARY KEY,
+   book_name VARCHAR(50),
+     author_id INT);
+     
+INSERT INTO books(id, book_name, auther_id)
+VALUES (1, 'azazil','hasan sami yousef',  1),
+       (2, 'JS', 'Johnson', 2);
+       
+ CREATE TABLE author(
+     id INT PRIMARY KEY,
+    author_name VARCHAR(50));
+INSERT INTO books(id,  auther_name)
+VALUES (1,'hasan sami yousef');
+      
+ CREATE TABLE publisher(
+    book_id INT,
+    auther_id INT,
+    published_date DATE
+   );
+   INSERT INTO publisher(book_id, auther_id, published_date)
+VALUES (1, 1,12-12-2023);
+SHOW TABLES;
+
+
+// finished all challaneges 
